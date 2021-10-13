@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BorrowerController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -14,13 +15,19 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return  Inertia::render('Index');
-    return view('welcome');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        return  Inertia::render('Home');
+        return view('welcome');
+    })->name('home');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+
+    Route::resource('borrowers', BorrowerController::class);
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
