@@ -6,7 +6,7 @@
             border-r border-gray-200
             pt-5
             pb-4
-            bg-white
+            bg-gray-900
             overflow-y-auto
         "
     >
@@ -18,15 +18,15 @@
             />
         </div>
         <div class="mt-5 flex-grow flex flex-col">
-            <nav class="flex-1 px-2 space-y-1 bg-white" aria-label="Sidebar">
+            <nav class="flex-1 px-2 space-y-1 bg-gray-900" aria-label="Sidebar">
                 <template v-for="item in navigation" :key="item.name">
                     <div v-if="!item.children">
                         <a
                             href="#"
                             :class="[
                                 item.current
-                                    ? 'bg-gray-100 text-gray-900'
-                                    : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                                    ? 'bg-gray-700 text-white'
+                                    : 'bg-gray-900 text-white hover:bg-gray-700 hover:text-white',
                                 'group w-full flex items-center pl-2 py-2 text-sm font-medium rounded-md',
                             ]"
                         >
@@ -34,8 +34,8 @@
                                 :is="item.icon"
                                 :class="[
                                     item.current
-                                        ? 'text-gray-500'
-                                        : 'text-gray-400 group-hover:text-gray-500',
+                                        ? 'text-white'
+                                        : 'text-white group-hover:text-white',
                                     'mr-3 flex-shrink-0 h-6 w-6',
                                 ]"
                                 aria-hidden="true"
@@ -52,8 +52,8 @@
                         <DisclosureButton
                             :class="[
                                 item.current
-                                    ? 'bg-gray-100 text-gray-900'
-                                    : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                                    ? 'bg-gray-100 text-white'
+                                    : 'bg-gray-900 text-white hover:bg-gray-700 hover:text-white',
                                 'group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500',
                             ]"
                         >
@@ -65,7 +65,7 @@
                                     h-6
                                     w-6
                                     text-gray-400
-                                    group-hover:text-gray-500
+                                    group-hover:text-white
                                 "
                                 aria-hidden="true"
                             />
@@ -75,9 +75,9 @@
                             <svg
                                 :class="[
                                     open
-                                        ? 'text-gray-400 rotate-90'
+                                        ? 'text-white rotate-90'
                                         : 'text-gray-300',
-                                    'ml-3 flex-shrink-0 h-5 w-5 transform group-hover:text-gray-400 transition-colors ease-in-out duration-150',
+                                    'ml-3 flex-shrink-0 h-5 w-5 transform group-hover:text-white transition-colors ease-in-out duration-150',
                                 ]"
                                 viewBox="0 0 20 20"
                                 aria-hidden="true"
@@ -103,10 +103,10 @@
                                     py-2
                                     text-sm
                                     font-medium
-                                    text-gray-600
+                                    text-white
                                     rounded-md
-                                    hover:text-gray-900
-                                    hover:bg-gray-50
+                                    hover:text-white
+                                    hover:bg-gray-700
                                 "
                             >
                                 {{ subItem.name }}
@@ -121,14 +121,7 @@
 
 <script>
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import {
-    CalendarIcon,
-    ChartBarIcon,
-    FolderIcon,
-    HomeIcon,
-    InboxIcon,
-    UsersIcon,
-} from "@heroicons/vue/outline";
+import { HomeIcon, UsersIcon, CashIcon } from "@heroicons/vue/outline";
 
 const navigation = [
     { name: "Dashboard", icon: HomeIcon, current: true, href: "#" },
@@ -144,47 +137,12 @@ const navigation = [
         ],
     },
     {
-        name: "Projects",
-        icon: FolderIcon,
+        name: "Expenses",
+        icon: CashIcon,
         current: false,
         children: [
-            { name: "Overview", href: "#" },
-            { name: "Members", href: "#" },
-            { name: "Calendar", href: "#" },
-            { name: "Settings", href: "#" },
-        ],
-    },
-    {
-        name: "Calendar",
-        icon: CalendarIcon,
-        current: false,
-        children: [
-            { name: "Overview", href: "#" },
-            { name: "Members", href: "#" },
-            { name: "Calendar", href: "#" },
-            { name: "Settings", href: "#" },
-        ],
-    },
-    {
-        name: "Documents",
-        icon: InboxIcon,
-        current: false,
-        children: [
-            { name: "Overview", href: "#" },
-            { name: "Members", href: "#" },
-            { name: "Calendar", href: "#" },
-            { name: "Settings", href: "#" },
-        ],
-    },
-    {
-        name: "Reports",
-        icon: ChartBarIcon,
-        current: false,
-        children: [
-            { name: "Overview", href: "#" },
-            { name: "Members", href: "#" },
-            { name: "Calendar", href: "#" },
-            { name: "Settings", href: "#" },
+            { name: "All", href: route("borrowers.index") },
+            { name: "Create", href: route("borrowers.create") },
         ],
     },
 ];
