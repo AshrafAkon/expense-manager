@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Borrower;
+use App\Models\Expense;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class BorrowerController extends Controller
+class ExpenseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,7 @@ class BorrowerController extends Controller
      */
     public function index()
     {
-        return Inertia::render(
-            'Borrower/Index',
-            ['borrowers' => Borrower::all()]
-        );
+        return Inertia::render('Expense/Index', ['expenses' => Expense::all()]);
     }
 
     /**
@@ -28,7 +25,7 @@ class BorrowerController extends Controller
      */
     public function create()
     {
-        return Inertia::render("Borrower/Create");
+        //
     }
 
     /**
@@ -39,14 +36,7 @@ class BorrowerController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            'connection' => 'required|string'
-        ]);
-
-        Borrower::create($data);
-        return redirect(route('borrowers.index'));
+        //
     }
 
     /**

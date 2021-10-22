@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BorrowerController;
+use App\Http\Controllers\ExpenseController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -27,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::resource('borrowers', BorrowerController::class);
+    Route::resource('expenses', ExpenseController::class);
 });
 
 

@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Borrower extends Model
 {
     use HasFactory;
-    protected $fillable = ['name'];
+    protected $fillable = ['first_name', 'last_name', 'connection'];
 }

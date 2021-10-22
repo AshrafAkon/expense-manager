@@ -105,8 +105,7 @@
                                     font-medium
                                     text-white
                                     rounded-md
-                                    hover:text-white
-                                    hover:bg-gray-700
+                                    hover:text-white hover:bg-gray-700
                                 "
                             >
                                 {{ subItem.name }}
@@ -141,8 +140,8 @@ const navigation = [
         icon: CashIcon,
         current: false,
         children: [
-            { name: "All", href: route("borrowers.index") },
-            { name: "Create", href: route("borrowers.create") },
+            { name: "All", href: route("expenses.index") },
+            { name: "Create", href: route("expenses.create") },
         ],
     },
 ];
