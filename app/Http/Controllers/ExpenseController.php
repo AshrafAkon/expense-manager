@@ -15,7 +15,14 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Expense/Index', ['expenses' => Expense::all()]);
+        $expenses = Expense::orderByDesc('id')->paginate(20);
+        return Inertia::render(
+            'Expense/Index',
+            [
+                'expenses' => $expenses,
+
+            ]
+        );
     }
 
     /**
@@ -25,7 +32,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render("Expense/Create");
     }
 
     /**
@@ -36,7 +43,14 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'string|required',
+            'amount' => 'required|numeric',
+            'description' => 'string'
+        ]);
+
+        Expense::create($data);
+        return redirect(route('expenses.index'));
     }
 
     /**
